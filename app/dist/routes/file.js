@@ -35,6 +35,9 @@ router.post("/", upload.single('image_url'), async (req, res, next) => {
     });
     await pic.save();
     const list = await photo_1.Photo.find({});
-    res.status(200).send(list);
+    const data = {
+        list, new_img: req.file.path, sucess: true, statusCode: 0
+    };
+    res.status(200).send(data);
 });
 exports.default = router;
